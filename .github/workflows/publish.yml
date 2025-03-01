@@ -9,7 +9,7 @@ on:
 jobs:
   publish:
     name: Publish Pypi and Create Release
-    if: github.repository == 'xaoyaoo/PyWxDump' # 仅在指定仓库的 tag 触发工作流程
+    if: github.repository == 'YuZhangForWeb/PyWxDump' # 仅在指定仓库的 tag 触发工作流程
     # 此作业在 Linux 上运行
     runs-on: windows-latest
 
@@ -107,13 +107,6 @@ jobs:
           ls PyWxDump/dist
           cd PyWxDump
 
-      - name: Publish package with Twine # 使用 Twine 发布到 PyPI
-        run: |
-          twine upload dist/*.whl dist/*.tar.gz
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
@@ -124,7 +117,7 @@ jobs:
           release_name: Release ${{ github.ref.tag }}
           body: |
             [Auto Release] Update PyWxDump to ${{ github.ref }}
-            详细更新日志请查看 [CHANGELOG.md](https://github.com/xaoyaoo/PyWxDump/blob/master/doc/CHANGELOG.md)
+            详细更新日志请查看 [CHANGELOG.md](https://github.com/YuZhangForWeb/PyWxDump/blob/master/doc/CHANGELOG.md)
           draft: false
           prerelease: false
           files: |
