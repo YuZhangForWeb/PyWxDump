@@ -7,6 +7,7 @@
 # -------------------------------------------------------------------------------
 import argparse
 import os
+import io
 import sys
 import json
 
@@ -24,6 +25,9 @@ wxdump_ascii = r"""
 PYWXDUMP_VERSION = pywxdump.__version__
 
 models = {}
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 
 def create_parser():
